@@ -86,17 +86,22 @@
             background-color: #b22222;
             color: white;
         }
-        .move-button, .send-email, .block-candidate, .send-test, .send-invite {
-            color: white;
-            background-color: #b22222;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        .block-candidate {
-            background-color: #555;
-        }
+        button {
+    background-color: #b22222; /* Dark Red */
+    color: white;
+    font-size: 14px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+/* Hover Effect */
+button:hover {
+    background-color: #8b0000; /* Darker Red */
+}
+
 .content {
             padding: 20px;
             background: white;
@@ -160,7 +165,7 @@
             <p><strong>Dates:</strong> March 2025 - August 2025</p>
             <p><strong>Compensation:</strong> ₹5000 per month</p>
             <p><strong>Requirements:</strong> Proficient in JavaScript, React, and Node.js.</p>
-            <p class="read-more">Read More</p>
+            <p class="read-more" onclick="openJobDetails()">Read More</p>
         </div>
         <div class="job-posting">
             <h3>Graphic Designer (Freelance)</h3>
@@ -169,7 +174,7 @@
             <p><strong>Dates:</strong> April 2025 - June 2025</p>
             <p><strong>Compensation:</strong> ₹3000 per month</p>
             <p><strong>Requirements:</strong> Experience with Photoshop, Illustrator, and Figma.</p>
-            <p class="read-more">Read More</p>
+           <p class="read-more" onclick="openJobDetails()">Read More</p>
         </div>
         <div class="job-posting">
             <h3>Content Writer (Remote)</h3>
@@ -178,131 +183,211 @@
             <p><strong>Dates:</strong> May 2025 - September 2025</p>
             <p><strong>Compensation:</strong> ₹2500 per month</p>
             <p><strong>Requirements:</strong> Excellent English writing and SEO skills.</p>
-            <p class="read-more">Read More</p>
+            <p class="read-more" onclick="openJobDetails()">Read More</p>
         </div>
     </div>
     
     <div id="applications" class="content">
                 <h2>Pending Applications</h2>
-        <table>
-            <tr>
-                <th>Applicant Name</th>
-                <th>Profile</th>
-                <th>Contact Info</th>
-                <th>Residence State</th>
-                <th>Qualifications</th>
-                <th>Skills</th>
-                <th>Action</th>
-            </tr>
-            <tr><td>Ravi Prakash</td><td>Software Developer</td><td>1234567890, ravi@example.com</td><td>Faridabad</td><td>BSc CS</td><td>JavaScript, React</td><td><button class="move-button">Move to Aptitude</button></td></tr>
-        </table>
-        
+<table id="pendingApplications">
+    <thead>
+        <tr>
+            <th>Applicant Name</th>
+            <th>Profile</th>
+            <th>Contact Info</th>
+            <th>Residence State</th>
+            <th>Qualifications</th>
+            <th>Skills</th>
+            <th>Resume</th> <!-- New Resume Column -->
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Ravi Prakash</td>
+            <td>Software Developer</td>
+            <td>1234567890, ravi@example.com</td>
+            <td>Faridabad</td>
+            <td>BSc CS</td>
+            <td>JavaScript, React</td>
+            <td><a href="https://drive.google.com/sample_resume.pdf" target="_blank">View Resume</a></td> <!-- Resume Link -->
+            <td>
+                <button onclick="moveCandidate(this, 'shortlistedAptitude')">Move to Aptitude</button>
+                <button onclick="moveCandidate(this, 'finalRejected')">Move to Rejected</button>
+            </td>
+        </tr>
+    </tbody>
+</table>        
         <h2>Shortlisted for Aptitude</h2>
-        <table>
-            <tr>
-                <th>Applicant Name</th>
-                <th>Profile</th>
-                <th>Contact Info</th>
-                <th>Residence State</th>
-                <th>Qualifications</th>
-                <th>Skills</th>
-                <th>Marks</th>
-                <th>Date</th>
-                <th>Action</th>
-            </tr>
-            <tr><td>Rani Jain</td><td>Graphic Designer</td><td>9876543210, rani@example.com</td><td>Jind</td><td>BA Design</td><td>Photoshop, Illustrator</td><td>85</td><td>10-Feb-2025</td><td><button class="send-test">Send Test</button> <button class="move-button">Move to PI</button></td></tr>
-        </table>
-        
+<table id="shortlistedAptitude">
+    <thead>
+        <tr>
+            <th>Applicant Name</th>
+            <th>Profile</th>
+            <th>Contact Info</th>
+            <th>Residence State</th>
+            <th>Qualifications</th>
+            <th>Skills</th>
+            <th>Resume</th> <!-- Added Resume Column -->
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Rani Jain</td>
+            <td>Graphic Designer</td>
+            <td>9876543210, rani@example.com</td>
+            <td>Jind</td>
+            <td>BA Design</td>
+            <td>Photoshop, Illustrator</td>
+            <td><a href="https://drive.google.com/sample_resume2.pdf" target="_blank">View Resume</a></td> <!-- Resume Link -->
+            <td>
+                <button onclick="moveCandidate(this, 'shortlistedPI')">Move to PI</button>
+                <button onclick="moveCandidate(this, 'finalRejected')">Move to Rejected</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
         <h2>Shortlisted for PI</h2>
-        <table>
-            <tr>
-                <th>Applicant Name</th>
-                <th>Profile</th>
-                <th>Contact Info</th>
-                <th>Residence State</th>
-                <th>Qualifications</th>
-                <th>Skills</th>
-                <th>Remarks</th>
-                <th>Date</th>
-                <th>Action</th>
-            </tr>
-            <tr><td>Baldev Singh</td><td>Content Writer</td><td>5556667777, baldev@example.com</td><td>Hisar</td><td>BA English</td><td>SEO, Blogging</td><td>Strong communication skills</td><td>15-Feb-2025</td><td><button class="send-invite">Send Invite</button> <button class="move-button">Move to Selected</button></td></tr>
-        </table>
-        
+<table id="shortlistedPI">
+    <thead>
+        <tr>
+            <th>Applicant Name</th>
+            <th>Profile</th>
+            <th>Contact Info</th>
+            <th>Residence State</th>
+            <th>Qualifications</th>
+            <th>Skills</th>
+            <th>Resume</th> <!-- Added Resume Column -->
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Baldev Singh</td>
+            <td>Content Writer</td>
+            <td>5556667777, baldev@example.com</td>
+            <td>Hisar</td>
+            <td>BA English</td>
+            <td>SEO, Blogging</td>
+            <td><a href="https://drive.google.com/sample_resume3.pdf" target="_blank">View Resume</a></td> <!-- Resume Link -->
+            <td>
+                <button class="send-invite" onclick="replaceWithText(this, 'Invite Sent')">Send Invite</button>
+    <button class="move-button" onclick="moveCandidate(this, 'finalSelected')">Move to Selected</button>
+    <button class="move-rejected" onclick="moveCandidate(this, 'finalRejected')">Move to Rejected</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
         <h2>Final Selected Candidates</h2>
-        <table>
-            <tr>
-                <th>Applicant Name</th>
-                <th>Profile</th>
-                <th>Contact Info</th>
-                <th>Residence State</th>
-                <th>Qualifications</th>
-                <th>Skills</th>
-                <th>Negotiated Compensation</th>
-                <th>Action</th>
-            </tr>
-            <tr><td>Vinayak Yadav</td><td>Marketing Specialist</td><td>2223334444, vinayak@example.com</td><td>Ambala</td><td>MBA Marketing</td><td>SEO, PPC</td><td>₹5000/month</td><td><button class="send-email">Send Offer</button></td></tr>
-        </table>
-        
+<table id="finalSelected">
+    <thead>
+        <tr>
+            <th>Applicant Name</th>
+            <th>Profile</th>
+            <th>Contact Info</th>
+            <th>Residence State</th>
+            <th>Qualifications</th>
+            <th>Skills</th>
+            <th>Resume</th> <!-- Added Resume Column -->
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Vinayak Yadav</td>
+            <td>Marketing Specialist</td>
+            <td>2223334444, vinayak@example.com</td>
+            <td>Ambala</td>
+            <td>MBA Marketing</td>
+            <td>SEO, PPC</td>
+            <td><a href="https://drive.google.com/sample_resume4.pdf" target="_blank">View Resume</a></td> <!-- Resume Link -->
+            <td>
+                <button class="send-email" onclick="replaceWithText(this, 'Offer Sent')">Send Offer</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
         <h2>Final Rejected Candidates</h2>
-        <table>
-            <tr>
-                <th>Applicant Name</th>
-                <th>Profile</th>
-                <th>Contact Info</th>
-                <th>Residence State</th>
-                <th>Qualifications</th>
-                <th>Skills</th>
-                <th>Remarks</th>
-                <th>Action</th>
-            </tr>
-            <tr><td>Naina Kaur</td><td>Data Analyst</td><td>4445556666, naina@example.com</td><td>Faridabad</td><td>MSc Statistics</td><td>Python, SQL</td><td>Did not meet technical expectations</td><td><button class="block-candidate">Block</button></td></tr>
-        </table>
+<table id="finalRejected">
+    <thead>
+        <tr>
+            <th>Applicant Name</th>
+            <th>Profile</th>
+            <th>Contact Info</th>
+            <th>Residence State</th>
+            <th>Qualifications</th>
+            <th>Skills</th>
+            <th>Resume</th> <!-- Added Resume Column -->
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Naina Kaur</td>
+            <td>Data Analyst</td>
+            <td>4445556666, naina@example.com</td>
+            <td>Faridabad</td>
+            <td>MSc Statistics</td>
+            <td>Python, SQL</td>
+            <td><a href="https://drive.google.com/sample_resume5.pdf" target="_blank">View Resume</a></td> <!-- Resume Link -->
+            <td>
+                <button class="block-candidate" onclick="replaceWithText(this, 'Candidate Blocked')">Block</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
     </div>
     
     <div id="payments" class="content">
                         <h2>Payments</h2>
-        
-        <table>
-            <tr>
-                <th>Name</th>
-                <th>Profile</th>
-                <th>Contact Info</th>
-                <th>Residence State</th>
-                <th>Account Number</th>
-                <th>Amount Due</th>
-                <th>Rating</th>
-                <th>Action</th>
-            </tr>
-            <tr>
-                <td>Ravi Prakash</td>
-                <td>Software Developer</td>
-                <td>1234567890, ravi@example.com</td>
-                <td>Jind</td>
-                <td>123456789</td>
-                <td>₹5000</td>
-                <td class="rating">&#9733;&#9733;&#9733;&#9733;&#9734;</td>
-                <td><button class="pay-now">Pay Now</button></td>
-            </tr>
-            <tr>
-                <td>Rani Jain</td>
-                <td>Graphic Designer</td>
-                <td>9876543210, rani@example.com</td>
-                <td>Hisar</td>
-                <td>987654321</td>
-                <td>₹3000</td>
-                <td class="rating">&#9733;&#9733;&#9733;&#9734;&#9734;</td>
-                <td><button class="pay-now">Pay Now</button></td>
-            </tr>
+<table id="paymentsTable">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Profile</th>
+            <th>Contact Info</th>
+            <th>Residence State</th>
+            <th>Account Number</th>
+            <th>Amount Due</th>
+            <th>Payment Status</th> <!-- New Column -->
+            <th>AutoPay</th> <!-- New Column -->
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Ravi Prakash</td>
+            <td>Software Developer</td>
+            <td>1234567890, ravi@example.com</td>
+            <td>Jind</td>
+            <td>123456789</td>
+             <td class="amount-due">₹5000</td>
+             <td class="payment-status">Pending</td>
+            <td><button class="autopay-btn" onclick="enableAutoPay(this)">Enable AutoPay</button></td>
+            <td><button class="pay-now" onclick="markAsPaid(this)">Pay Now</button></td>
+        </tr>
+        <tr>
+            <td>Rani Jain</td>
+            <td>Graphic Designer</td>
+            <td>9876543210, rani@example.com</td>
+            <td>Hisar</td>
+            <td>987654321</td>
+             <td class="amount-due">₹3000</td>
+             <td class="payment-status">Pending</td>
+            <td><button class="autopay-btn" onclick="enableAutoPay(this)">Enable AutoPay</button></td>
+            <td><button class="pay-now" onclick="markAsPaid(this)">Pay Now</button></td>
+        </tr>
             <tr>
                 <td>Baldev Singh</td>
                 <td>Data Analyst</td>
                 <td>5556667777, baldev@example.com</td>
                 <td>Bhiwani</td>
                 <td>555888999</td>
-                <td>₹4000</td>
-                <td class="rating">&#9733;&#9733;&#9733;&#9733;&#9733;</td>
-                <td><button class="pay-now">Pay Now</button></td>
+                 <td class="amount-due">₹4000</td>
+                <td class="payment-status">Pending</td>
+            <td><button class="autopay-btn" onclick="enableAutoPay(this)">Enable AutoPay</button></td>
+            <td><button class="pay-now" onclick="markAsPaid(this)">Pay Now</button></td>
             </tr>
             <tr>
                 <td>Vinayak Yadav</td>
@@ -310,20 +395,24 @@
                 <td>4445556666, vinayak@example.com</td>
                 <td>Ambala</td>
                 <td>444777888</td>
-                <td>₹4500</td>
-                <td class="rating">&#9733;&#9733;&#9733;&#9733;&#9734;</td>
-                <td><button class="pay-now">Pay Now</button></td>
+                 <td class="amount-due">₹4500</td>
+                <td class="payment-status">Pending</td>
+            <td><button class="autopay-btn" onclick="enableAutoPay(this)">Enable AutoPay</button></td>
+            <td><button class="pay-now" onclick="markAsPaid(this)">Pay Now</button></td>
             </tr>
+    </tbody>
         </table>
     </div>
-    
+    <div id="excelViewer" class="content">
+    <h2>Job Details</h2>
+    <iframe id="excelFrame" width="100%" height="600px" style="border: 1px solid #ddd; border-radius: 10px;"></iframe>
+</div>
     <script>
         function showContent(tabId) {
             document.querySelectorAll('.content').forEach(div => {
                 div.classList.remove('active');
             });
             document.getElementById(tabId).classList.add('active');
-            
             document.querySelectorAll('.tab').forEach(tab => {
                 tab.classList.remove('active');
             });
@@ -331,19 +420,140 @@
         }
     </script>
     </div>
-    
     <script>
-        function showContent(tabId) {
-            document.querySelectorAll('.content').forEach(div => {
-                div.classList.remove('active');
-            });
-            document.getElementById(tabId).classList.add('active');
-            
-            document.querySelectorAll('.tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            event.target.classList.add('active');
+    function markAsPaid(button) {
+        let row = button.closest("tr"); // Get the row of the clicked button
+        let paymentStatusCell = row.querySelector(".payment-status"); // Find Payment Status column
+        let amountDueCell = row.querySelector(".amount-due"); // Find Amount Due column
+
+        if (paymentStatusCell && amountDueCell) {
+            paymentStatusCell.innerText = "Paid"; // Update status to Paid
+            paymentStatusCell.style.color = "green"; // Change text color to green
+            amountDueCell.innerText = "₹0"; // Set Amount Due to 0
+
+            // Disable the Pay Now button
+            button.disabled = true; // Disable button
+            button.innerText = "Paid"; // Change button text to Paid
+            button.style.backgroundColor = "#28a745"; // Green color for Paid button
+        } else {
+            console.error("Required cells not found.");
         }
-    </script>
+    }
+function replaceWithText(button, message) {
+        let span = document.createElement("span"); // Create a new span element
+        span.innerText = message; // Set the text message
+        span.style.color = "#b22222"; // Make the text red for emphasis
+        span.style.fontWeight = "bold"; // Bold the text
+
+        button.parentNode.replaceChild(span, button); // Replace button with text
+    }
+function enableAutoPay(button) {
+        button.innerText = "AutoPay Enabled"; // Change button text
+        button.disabled = true; // Disable button to prevent re-clicking
+        button.style.background = "#28a745"; // Change color to green
+     }
+function moveCandidate(button, targetTableId) {
+        let row = button.closest("tr"); // Get the row of the clicked button
+        let targetTable = document.querySelector(`#${targetTableId} tbody`); // Find the target table
+
+        if (targetTable) {
+            let newRow = row.cloneNode(true); // Clone the row
+            updateButtons(newRow, targetTableId); // Update buttons dynamically based on group
+
+            targetTable.appendChild(newRow); // Move row to new table
+            row.remove(); // Remove row from the old table
+        } else {
+            console.error(`Table with ID '${targetTableId}' not found.`);
+        }
+    }
+    function updateButtons(row, targetTableId) {
+        let actionCell = row.querySelector("td:last-child"); // Find action column
+        actionCell.innerHTML = ""; // Clear existing buttons
+
+        if (targetTableId === "shortlistedAptitude") {
+            actionCell.innerHTML = `
+                <button onclick="moveCandidate(this, 'shortlistedPI')">Move to PI</button>
+                <button onclick="moveCandidate(this, 'finalRejected')">Move to Rejected</button>
+            `;
+        } else if (targetTableId === "shortlistedPI") {
+            actionCell.innerHTML = `
+                <button onclick="replaceWithText(this, 'Invite Sent')">Send Invite</button>
+                <button onclick="moveCandidate(this, 'finalSelected')">Move to Selected</button>
+                <button onclick="moveCandidate(this, 'finalRejected')">Move to Rejected</button>
+            `;
+        } else if (targetTableId === "finalSelected") {
+            actionCell.innerHTML = `
+                <button onclick="replaceWithText(this, 'Offer Sent')">Send Offer</button>
+            `;
+        } else if (targetTableId === "finalRejected") {
+            actionCell.innerHTML = `
+                <button onclick="replaceWithText(this, 'Candidate Blocked')">Block</button>
+            `;
+        }
+    }
+    function showFlashMessage(message) {
+        let flashMessage = document.createElement("div");
+        flashMessage.innerText = message;
+        flashMessage.style.position = "fixed";
+        flashMessage.style.top = "10px";
+        flashMessage.style.right = "10px";
+        flashMessage.style.background = "#b22222";
+        flashMessage.style.color = "white";
+        flashMessage.style.padding = "10px 15px";
+        flashMessage.style.borderRadius = "5px";
+        flashMessage.style.zIndex = "1000";
+        flashMessage.style.fontWeight = "bold";
+
+        document.body.appendChild(flashMessage);
+
+        setTimeout(() => {
+            flashMessage.remove(); // Remove after 2 seconds
+        }, 2000);
+    }
+    function showContent(tabId) {
+        document.querySelectorAll('.content').forEach(div => {
+            div.classList.remove('active');
+        });
+        document.getElementById(tabId).classList.add('active');
+        
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.classList.remove('active');
+        });
+        event.target.classList.add('active');
+    }
+    function openJobDetails() {
+        // Switch to the "Excel Viewer" tab
+        showContent('excelViewer');
+
+        // Set the iframe source to the embedded Google Sheets link
+        document.getElementById("excelFrame").src = 
+            "https://docs.google.com/spreadsheets/d/1mY4LvMq87CM8jjHlN_TPRuArEHMx0ZfpJupZ_z_w-GE/preview";
+    }
+    function filterByProfile() {
+        let selectedProfile = document.getElementById("profileFilter").value.toLowerCase();
+        
+        // Get all rows from all application tables
+        let tables = document.querySelectorAll("#applications table");
+
+        tables.forEach(table => {
+            let rows = table.querySelectorAll("tr:not(:first-child)"); // Exclude header row
+            
+            rows.forEach(row => {
+                let profileCell = row.cells[1]; // Profile column is second (index 1)
+                
+                if (profileCell) {
+                    let profileText = profileCell.innerText.toLowerCase();
+                    
+                    // Show or hide the row based on selection
+                    if (selectedProfile === "all" || profileText === selectedProfile) {
+                        row.style.display = "";
+                    } else {
+                        row.style.display = "none";
+                    }
+                }
+            });
+        });
+    }
+</script>
 </body>
 </html>
