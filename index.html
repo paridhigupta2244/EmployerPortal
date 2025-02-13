@@ -64,6 +64,18 @@
             cursor: pointer;
             font-weight: bold;
         }
+.star {
+    font-size: 22px;
+    color: gray;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+/* Highlighted (selected) stars */
+.star.selected,
+.star:hover {
+    color: gold;
+}
 .content {
             padding: 20px;
             background: white;
@@ -204,46 +216,18 @@ button:hover {
     </thead>
     <tbody>
         <tr>
-                <td>Ravi Prakash</td>
-                <td>Software Developer</td>
-                <td>1234567890, ravi@example.com</td>
-                <td>Faridabad</td>
-                <td>BSc CS</td>
-                <td>JavaScript, React</td>
-                <td><a href="https://drive.google.com/sample_resume.pdf" target="_blank">View Resume</a></td>
-                <td>
-                    <button onclick="moveCandidate(this, 'shortlistedAptitude')">Move to Aptitude</button>
-                    <button onclick="moveCandidate(this, 'finalRejected')">Move to Rejected</button>
-                </td>
-            </tr>
-            <!-- New Dummy Row 1 -->
-            <tr>
-                <td>Priya Sharma</td>
-                <td>Graphic Designer</td>
-                <td>9876543210, priya@example.com</td>
-                <td>Delhi</td>
-                <td>BA Design</td>
-                <td>Photoshop, Illustrator, InDesign</td>
-                <td><a href="https://drive.google.com/sample_resume2.pdf" target="_blank">View Resume</a></td>
-                <td>
-                    <button onclick="moveCandidate(this, 'shortlistedAptitude')">Move to Aptitude</button>
-                    <button onclick="moveCandidate(this, 'finalRejected')">Move to Rejected</button>
-                </td>
-            </tr>
-            <!-- New Dummy Row 2 -->
-            <tr>
-                <td>Aman Kumar</td>
-                <td>Content Writer</td>
-                <td>5551234567, aman@example.com</td>
-                <td>Chandigarh</td>
-                <td>BA English</td>
-                <td>SEO, Blogging, Editing</td>
-                <td><a href="https://drive.google.com/sample_resume3.pdf" target="_blank">View Resume</a></td>
-                <td>
-                    <button onclick="moveCandidate(this, 'shortlistedAptitude')">Move to Aptitude</button>
-                    <button onclick="moveCandidate(this, 'finalRejected')">Move to Rejected</button>
-                </td>
-            </tr>
+            <td>Ravi Prakash</td>
+            <td>Software Developer</td>
+            <td>1234567890, ravi@example.com</td>
+            <td>Faridabad</td>
+            <td>BSc CS</td>
+            <td>JavaScript, React</td>
+            <td><a href="https://drive.google.com/sample_resume.pdf" target="_blank">View Resume</a></td> <!-- Resume Link -->
+            <td>
+                <button onclick="moveCandidate(this, 'shortlistedAptitude')">Move to Aptitude</button>
+                <button onclick="moveCandidate(this, 'finalRejected')">Move to Rejected</button>
+            </td>
+        </tr>
     </tbody>
 </table>        
         <h2>Shortlisted for Aptitude</h2>
@@ -268,19 +252,6 @@ button:hover {
             <td>Jind</td>
             <td>BA Design</td>
             <td>Photoshop, Illustrator</td>
-            <td><a href="https://drive.google.com/sample_resume2.pdf" target="_blank">View Resume</a></td> <!-- Resume Link -->
-            <td>
-                <button onclick="moveCandidate(this, 'shortlistedPI')">Move to PI</button>
-                <button onclick="moveCandidate(this, 'finalRejected')">Move to Rejected</button>
-            </td>
-        </tr>
-        <tr>
-            <td>Raman Singh</td>
-            <td>Airtist</td>
-            <td>96935438097, raman@example.com</td>
-            <td>Ludhinana</td>
-            <td>MA Design</td>
-            <td>Canva, Illustrator</td>
             <td><a href="https://drive.google.com/sample_resume2.pdf" target="_blank">View Resume</a></td> <!-- Resume Link -->
             <td>
                 <button onclick="moveCandidate(this, 'shortlistedPI')">Move to PI</button>
@@ -394,6 +365,7 @@ button:hover {
             <th>Payment Status</th> <!-- New Column -->
             <th>AutoPay</th> <!-- New Column -->
             <th>Action</th>
+<th>Rating</th>
         </tr>
     </thead>
     <tbody>
@@ -406,7 +378,13 @@ button:hover {
              <td class="amount-due">₹5000</td>
              <td class="payment-status">Pending</td>
             <td><button class="autopay-btn" onclick="enableAutoPay(this)">Enable AutoPay</button></td>
-            <td><button class="pay-now" onclick="markAsPaid(this)">Pay Now</button></td>
+            <td><button class="pay-now" onclick="markAsPaid(this)">Pay Now</button></td><td class="rating-cell" data-rating="0">
+                <span class="star" onclick="setRating(this, 1)">★</span>
+                <span class="star" onclick="setRating(this, 2)">★</span>
+                <span class="star" onclick="setRating(this, 3)">★</span>
+                <span class="star" onclick="setRating(this, 4)">★</span>
+                <span class="star" onclick="setRating(this, 5)">★</span>
+            </td>
         </tr>
         <tr>
             <td>Rani Jain</td>
@@ -418,6 +396,13 @@ button:hover {
              <td class="payment-status">Pending</td>
             <td><button class="autopay-btn" onclick="enableAutoPay(this)">Enable AutoPay</button></td>
             <td><button class="pay-now" onclick="markAsPaid(this)">Pay Now</button></td>
+<td class="rating-cell" data-rating="0">
+                <span class="star" onclick="setRating(this, 1)">★</span>
+                <span class="star" onclick="setRating(this, 2)">★</span>
+                <span class="star" onclick="setRating(this, 3)">★</span>
+                <span class="star" onclick="setRating(this, 4)">★</span>
+                <span class="star" onclick="setRating(this, 5)">★</span>
+            </td>
         </tr>
             <tr>
                 <td>Baldev Singh</td>
@@ -428,7 +413,13 @@ button:hover {
                  <td class="amount-due">₹4000</td>
                 <td class="payment-status">Pending</td>
             <td><button class="autopay-btn" onclick="enableAutoPay(this)">Enable AutoPay</button></td>
-            <td><button class="pay-now" onclick="markAsPaid(this)">Pay Now</button></td>
+            <td><button class="pay-now" onclick="markAsPaid(this)">Pay Now</button></td><td class="rating-cell" data-rating="0">
+                <span class="star" onclick="setRating(this, 1)">★</span>
+                <span class="star" onclick="setRating(this, 2)">★</span>
+                <span class="star" onclick="setRating(this, 3)">★</span>
+                <span class="star" onclick="setRating(this, 4)">★</span>
+                <span class="star" onclick="setRating(this, 5)">★</span>
+            </td>
             </tr>
             <tr>
                 <td>Vinayak Yadav</td>
@@ -439,7 +430,13 @@ button:hover {
                  <td class="amount-due">₹4500</td>
                 <td class="payment-status">Pending</td>
             <td><button class="autopay-btn" onclick="enableAutoPay(this)">Enable AutoPay</button></td>
-            <td><button class="pay-now" onclick="markAsPaid(this)">Pay Now</button></td>
+            <td><button class="pay-now" onclick="markAsPaid(this)">Pay Now</button></td><td class="rating-cell" data-rating="0">
+                <span class="star" onclick="setRating(this, 1)">★</span>
+                <span class="star" onclick="setRating(this, 2)">★</span>
+                <span class="star" onclick="setRating(this, 3)">★</span>
+                <span class="star" onclick="setRating(this, 4)">★</span>
+                <span class="star" onclick="setRating(this, 5)">★</span>
+            </td>
             </tr>
     </tbody>
         </table>
@@ -593,6 +590,22 @@ function moveCandidate(button, targetTableId) {
                     }
                 }
             });
+        });
+    }
+function setRating(star, rating) {
+        let ratingCell = star.parentNode; // Get the rating cell
+        let stars = ratingCell.querySelectorAll('.star'); // Get all stars in the row
+
+        // Update data-rating attribute
+        ratingCell.setAttribute("data-rating", rating);
+
+        // Highlight the selected stars
+        stars.forEach((s, index) => {
+            if (index < rating) {
+                s.classList.add("selected");
+            } else {
+                s.classList.remove("selected");
+            }
         });
     }
 </script>
